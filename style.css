@@ -1,0 +1,750 @@
+/* ==========================================================================
+   MAHI RAJA SINGH | PORTFOLIO STYLESHEET
+   --------------------------------------------------------------------------
+   1.  Variables
+   2.  Base styles
+   3.  Layout helpers
+   4.  Roll link (hover effect)
+   5.  Progress bar and header
+   6.  Hero
+   7.  Black hole
+   8.  Marquee
+   9.  About
+   10. Work
+   11. Education
+   12. Contact
+   13. Footer
+   14. Keyframes
+   15. Scroll-driven animations
+   16. Responsive
+   17. Reduced motion
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIABLES
+   ========================================================================== */
+:root {
+  --bg: #000;
+  --text: #ececec;
+  --muted: #8a8a8a;
+  --line: rgba(255, 255, 255, 0.18);
+  --accent: #fff;
+
+  /* one smooth easing curve used for every transition */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ==========================================================================
+   2. BASE STYLES
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+}
+
+body {
+  font-family: "Archivo", sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+ul {
+  list-style: none;
+}
+
+p {
+  color: var(--muted);
+}
+
+sup {
+  font-size: 0.35em;
+  font-weight: 500;
+  vertical-align: super;
+}
+
+
+/* ==========================================================================
+   3. LAYOUT HELPERS
+   ========================================================================== */
+.container {
+  width: min(1280px, 100% - 3rem);
+  margin-inline: auto;
+}
+
+.section {
+  padding: 7rem 0;
+}
+
+/* small uppercase title with a line above it */
+.label {
+  position: relative;
+  margin-bottom: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* white line that is drawn over the grey one on scroll */
+.label::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform-origin: left;
+}
+
+
+/* ==========================================================================
+   4. ROLL LINK (text slides up and a copy slides in)
+   ========================================================================== */
+.roll {
+  --lh: 1.3;
+  display: inline-block;
+  height: calc(1em * var(--lh));
+  line-height: var(--lh);
+  vertical-align: bottom;
+  overflow: hidden;
+}
+
+.roll span {
+  position: relative;
+  display: block;
+  transition: transform 0.55s var(--ease);
+}
+
+.roll span::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+}
+
+.roll:hover span {
+  transform: translateY(-100%);
+}
+
+
+/* ==========================================================================
+   5. PROGRESS BAR AND HEADER
+   ========================================================================== */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.5rem;
+  background: linear-gradient(#000, transparent);
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.top-links {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.95rem;
+}
+
+
+/* ==========================================================================
+   6. HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100svh;
+  padding: 7rem 0 3rem;
+  overflow: hidden;
+}
+
+/* fades the bottom to black so the name stays readable */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 55%;
+  background: linear-gradient(transparent, #000 85%);
+}
+
+.hero-in {
+  position: relative;
+  z-index: 2;
+  width: min(1280px, 100% - 3rem);
+  margin-inline: auto;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* the name never grows taller than the screen: min() picks the smaller size */
+h1 {
+  font-size: clamp(3.6rem, min(15vw, 24svh), 14rem);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+}
+
+h1 span {
+  display: block;
+}
+
+.hero-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.intro {
+  max-width: 40ch;
+}
+
+/* rotating role: a tall column of lines moved up one at a time */
+.cycler {
+  height: 1.2em;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--accent);
+  overflow: hidden;
+}
+
+.cycle {
+  display: block;
+  animation: cycle 10s var(--ease) infinite;
+}
+
+.cycle b {
+  display: block;
+  height: 1.2em;
+  line-height: 1.2;
+}
+
+
+/* ==========================================================================
+   7. BLACK HOLE
+   a black shadow with a thin bright ring of bent light, stars and a glow
+   ========================================================================== */
+.blackhole {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  z-index: 1;
+  width: min(150vw, 1500px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  pointer-events: none;
+}
+
+.blackhole > * {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.bh-stars {
+  inset: -20%;
+  -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+  mask-image: radial-gradient(circle, #000 35%, transparent 70%);
+  background-image:
+    radial-gradient(2px 2px at 12% 22%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 78% 18%, #fff, transparent),
+    radial-gradient(2px 2px at 88% 64%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 30% 82%, #fff, transparent),
+    radial-gradient(2px 2px at 55% 8%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 8% 60%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 66% 90%, #fff, transparent),
+    radial-gradient(1px 1px at 42% 48%, #fff, transparent);
+}
+
+.bh-glow {
+  inset: 18%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05) 45%,
+    transparent 70%
+  );
+  will-change: transform;
+  animation: breathe 8s ease-in-out infinite;
+}
+
+/* light bent over the top and bottom of the shadow */
+.bh-halo {
+  inset: 30%;
+  filter: blur(2px);
+  background: conic-gradient(
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0.3) 25%,
+    rgba(255, 255, 255, 0.5) 50%,
+    #fff 75%,
+    rgba(255, 255, 255, 0.45)
+  );
+  -webkit-mask: radial-gradient(
+    closest-side,
+    transparent 76%,
+    rgba(0, 0, 0, 0.95) 83%,
+    rgba(0, 0, 0, 0.4) 92%,
+    transparent 100%
+  );
+  mask: radial-gradient(
+    closest-side,
+    transparent 76%,
+    rgba(0, 0, 0, 0.95) 83%,
+    rgba(0, 0, 0, 0.4) 92%,
+    transparent 100%
+  );
+}
+
+.bh-core {
+  inset: 36%;
+  background: #000;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.9),
+    0 0 30px 6px rgba(255, 255, 255, 0.45),
+    0 0 120px 30px rgba(255, 255, 255, 0.12);
+}
+
+
+/* ==========================================================================
+   8. MARQUEE
+   ========================================================================== */
+.marquee {
+  padding: 1.6rem 0;
+  border-block: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  will-change: transform;
+  animation: marquee 35s linear infinite;
+}
+
+.marquee-track span {
+  font-size: clamp(2.2rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+
+.marquee-track span::after {
+  content: "●";
+  margin-left: 3rem;
+  font-size: 0.4em;
+  vertical-align: middle;
+}
+
+
+/* ==========================================================================
+   9. ABOUT
+   ========================================================================== */
+.statement {
+  max-width: 22ch;
+  font-size: clamp(1.8rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--text);
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 5rem;
+}
+
+.cols h4 {
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cols li {
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--line);
+  transition: padding-left 0.5s var(--ease);
+}
+
+.cols li:hover {
+  padding-left: 1rem;
+}
+
+
+/* ==========================================================================
+   10. WORK (hover one row and the others dim)
+   ========================================================================== */
+.work-list {
+  border-bottom: 1px solid var(--line);
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.4rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.row > :not(.peek) {
+  transition: opacity 0.6s var(--ease), transform 0.7s var(--ease);
+}
+
+.work-list:hover .row > :not(.peek) {
+  opacity: 0.3;
+}
+
+.work-list .row:hover > :not(.peek) {
+  opacity: 1;
+}
+
+.row h3 {
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.row:hover h3 {
+  transform: translateX(1.5rem);
+}
+
+.desc span {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.links a {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* preview card that tilts in on hover and shows a screenshot of the project */
+.peek {
+  position: absolute;
+  top: 50%;
+  right: 28%;
+  width: 280px;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background-color: #111;
+  background-size: cover;
+  background-position: top center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) rotate(-8deg) scale(0.8);
+  transition: opacity 0.6s var(--ease), transform 0.8s var(--ease);
+}
+
+.row:hover .peek {
+  opacity: 1;
+  transform: translateY(-50%) rotate(0) scale(1);
+}
+
+/* screenshot first; the grey gradient shows until the image file is added */
+.p1 { background-image: url("images/lunar-001.png"), linear-gradient(135deg, #fff, #777); }
+.p2 { background-image: url("images/afterimage.png"), linear-gradient(135deg, #222, #bbb); }
+.p3 { background-image: url("images/css-motion-lab.png"), linear-gradient(135deg, #999, #111); }
+
+
+/* ==========================================================================
+   11. EDUCATION
+   ========================================================================== */
+.edu-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.edu-row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.edu-row h3 {
+  font-size: clamp(1.4rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  transition: transform 0.6s var(--ease);
+}
+
+.edu-row:hover h3 {
+  transform: translateX(1rem);
+}
+
+.edu-row span {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+
+/* ==========================================================================
+   12. CONTACT
+   ========================================================================== */
+.big-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  font-size: clamp(3.5rem, 15vw, 13rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  transition: color 0.6s var(--ease);
+}
+
+.big-link b {
+  display: inline-block;
+  transition: transform 0.7s var(--ease);
+}
+
+/* on hover the text turns into an outline */
+.big-link:hover {
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;
+}
+
+.big-link:hover b {
+  transform: translateX(2rem) rotate(-45deg);
+}
+
+.mail {
+  margin-top: 1.5rem;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  color: var(--text);
+}
+
+.socials {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.socials em {
+  font-style: normal;
+}
+
+
+/* ==========================================================================
+   13. FOOTER
+   ========================================================================== */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 2rem 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+
+
+/* ==========================================================================
+   14. KEYFRAMES (only transform and opacity, so they stay smooth)
+   ========================================================================== */
+@keyframes cycle {
+  0%, 28%  { transform: translateY(0); }
+  33%, 61% { transform: translateY(-1.2em); }
+  66%, 94% { transform: translateY(-2.4em); }
+  100%     { transform: translateY(-3.6em); }
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@keyframes breathe {
+  50% { transform: scale(1.1); }
+}
+
+/* used by the scroll-driven animations below */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes grow {
+  to { transform: scaleX(1); }
+}
+
+@keyframes draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes fill {
+  to { background-position: 0 0; }
+}
+
+
+/* ==========================================================================
+   15. SCROLL-DRIVEN ANIMATIONS (only in browsers that support them)
+   ========================================================================== */
+@supports (animation-timeline: view()) {
+
+  /* progress bar grows with the page scroll */
+  .progress {
+    animation: grow linear both;
+    animation-timeline: scroll(root);
+  }
+
+  /* white line draws as the label enters the screen */
+  .label::before {
+    animation: draw linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 80%;
+  }
+
+  /* cards, rows and columns fade up as they enter */
+  .reveal {
+    animation: rise ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+
+  .cols .reveal:nth-child(2) { animation-range: entry 6% entry 66%; }
+  .cols .reveal:nth-child(3) { animation-range: entry 12% entry 72%; }
+
+  /* the big statement fills with white as you scroll past it */
+  .statement {
+    color: transparent;
+    background: linear-gradient(90deg, var(--text) 50%, #3a3a38 50%) 100% 0 / 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: fill linear both;
+    animation-timeline: view();
+    animation-range: entry 35% cover 50%;
+  }
+}
+
+
+/* ==========================================================================
+   16. RESPONSIVE
+   ========================================================================== */
+@media (max-width: 800px) {
+  .section { padding: 4.5rem 0; }
+
+  .top-links {
+    gap: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .hero-foot {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .blackhole {
+    top: 34%;
+    width: 230vw;
+  }
+
+  .row,
+  .edu-row {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .links { align-items: flex-start; }
+  .peek  { display: none; }
+}
+
+
+/* ==========================================================================
+   17. REDUCED MOTION (for visitors who turn animations off)
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto;
+  }
+}
