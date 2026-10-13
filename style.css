@@ -1,3 +1,29 @@
+/* ==========================================================================
+   MAHI RAJA SINGH | PORTFOLIO STYLESHEET
+   --------------------------------------------------------------------------
+   1.  Variables
+   2.  Base styles
+   3.  Layout helpers
+   4.  Roll link (hover effect)
+   5.  Progress bar and header
+   6.  Hero
+   7.  Black hole
+   8.  Marquee
+   9.  About
+   10. Work
+   11. Education
+   12. Contact
+   13. Footer
+   14. Keyframes
+   15. Scroll-driven animations
+   16. Responsive
+   17. Reduced motion
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIABLES
+   ========================================================================== */
 :root {
   --bg: #000;
   --text: #ececec;
@@ -5,11 +31,14 @@
   --line: rgba(255, 255, 255, 0.18);
   --accent: #fff;
 
- 
+  /* one smooth easing curve used for every transition */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
+/* ==========================================================================
+   2. BASE STYLES
+   ========================================================================== */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -56,6 +85,10 @@ sup {
   vertical-align: super;
 }
 
+
+/* ==========================================================================
+   3. LAYOUT HELPERS
+   ========================================================================== */
 .container {
   width: min(1280px, 100% - 3rem);
   margin-inline: auto;
@@ -64,6 +97,8 @@ sup {
 .section {
   padding: 7rem 0;
 }
+
+/* small uppercase title with a line above it */
 .label {
   position: relative;
   margin-bottom: 3rem;
@@ -75,6 +110,7 @@ sup {
   color: var(--muted);
 }
 
+/* white line that is drawn over the grey one on scroll */
 .label::before {
   content: "";
   position: absolute;
@@ -86,6 +122,10 @@ sup {
   transform-origin: left;
 }
 
+
+/* ==========================================================================
+   4. ROLL LINK (text slides up and a copy slides in)
+   ========================================================================== */
 .roll {
   --lh: 1.3;
   display: inline-block;
@@ -113,6 +153,10 @@ sup {
   transform: translateY(-100%);
 }
 
+
+/* ==========================================================================
+   5. PROGRESS BAR AND HEADER
+   ========================================================================== */
 .progress {
   position: fixed;
   top: 0;
@@ -163,6 +207,7 @@ sup {
   overflow: hidden;
 }
 
+/* fades the bottom to black so the name stays readable */
 .hero::after {
   content: "";
   position: absolute;
@@ -190,6 +235,7 @@ sup {
   text-transform: uppercase;
 }
 
+/* the name never grows taller than the screen: min() picks the smaller size */
 h1 {
   font-size: clamp(3.6rem, min(15vw, 24svh), 14rem);
   font-weight: 800;
@@ -215,6 +261,7 @@ h1 span {
   max-width: 40ch;
 }
 
+/* rotating role: a tall column of lines moved up one at a time */
 .cycler {
   height: 1.2em;
   font-size: clamp(1.4rem, 3vw, 2.2rem);
@@ -234,6 +281,11 @@ h1 span {
   line-height: 1.2;
 }
 
+
+/* ==========================================================================
+   7. BLACK HOLE
+   a black shadow with a thin bright ring of bent light, stars and a glow
+   ========================================================================== */
 .blackhole {
   position: absolute;
   top: 40%;
@@ -277,6 +329,7 @@ h1 span {
   animation: breathe 8s ease-in-out infinite;
 }
 
+/* light bent over the top and bottom of the shadow */
 .bh-halo {
   inset: 30%;
   filter: blur(2px);
@@ -312,6 +365,10 @@ h1 span {
     0 0 120px 30px rgba(255, 255, 255, 0.12);
 }
 
+
+/* ==========================================================================
+   8. MARQUEE
+   ========================================================================== */
 .marquee {
   padding: 1.6rem 0;
   border-block: 1px solid var(--line);
@@ -344,6 +401,10 @@ h1 span {
   vertical-align: middle;
 }
 
+
+/* ==========================================================================
+   9. ABOUT
+   ========================================================================== */
 .statement {
   max-width: 22ch;
   font-size: clamp(1.8rem, 5vw, 4rem);
@@ -378,6 +439,10 @@ h1 span {
   padding-left: 1rem;
 }
 
+
+/* ==========================================================================
+   10. WORK (hover one row and the others dim)
+   ========================================================================== */
 .work-list {
   border-bottom: 1px solid var(--line);
 }
@@ -437,6 +502,7 @@ h1 span {
   color: var(--text);
 }
 
+/* preview card that tilts in on hover and shows a screenshot of the project */
 .peek {
   position: absolute;
   top: 50%;
@@ -459,10 +525,15 @@ h1 span {
   transform: translateY(-50%) rotate(0) scale(1);
 }
 
+/* screenshot first; the grey gradient shows until the image file is added */
 .p1 { background-image: url("images/lunar-001.png"), linear-gradient(135deg, #fff, #777); }
 .p2 { background-image: url("images/afterimage.png"), linear-gradient(135deg, #222, #bbb); }
 .p3 { background-image: url("images/css-motion-lab.png"), linear-gradient(135deg, #999, #111); }
 
+
+/* ==========================================================================
+   11. EDUCATION
+   ========================================================================== */
 .edu-row {
   display: grid;
   grid-template-columns: 1.5fr 1fr auto;
@@ -493,6 +564,10 @@ h1 span {
   color: var(--muted);
 }
 
+
+/* ==========================================================================
+   12. CONTACT
+   ========================================================================== */
 .big-link {
   display: inline-flex;
   align-items: center;
@@ -509,6 +584,7 @@ h1 span {
   transition: transform 0.7s var(--ease);
 }
 
+/* on hover the text turns into an outline */
 .big-link:hover {
   color: transparent;
   -webkit-text-stroke: 2px #fff;
@@ -534,6 +610,10 @@ h1 span {
   font-style: normal;
 }
 
+
+/* ==========================================================================
+   13. FOOTER
+   ========================================================================== */
 .footer {
   display: flex;
   justify-content: space-between;
@@ -544,6 +624,10 @@ h1 span {
   font-size: 0.9rem;
 }
 
+
+/* ==========================================================================
+   14. KEYFRAMES (only transform and opacity, so they stay smooth)
+   ========================================================================== */
 @keyframes cycle {
   0%, 28%  { transform: translateY(0); }
   33%, 61% { transform: translateY(-1.2em); }
@@ -559,6 +643,7 @@ h1 span {
   50% { transform: scale(1.1); }
 }
 
+/* used by the scroll-driven animations below */
 @keyframes rise {
   from { opacity: 0; transform: translateY(32px); }
   to   { opacity: 1; transform: none; }
@@ -577,19 +662,26 @@ h1 span {
   to { background-position: 0 0; }
 }
 
+
+/* ==========================================================================
+   15. SCROLL-DRIVEN ANIMATIONS (only in browsers that support them)
+   ========================================================================== */
 @supports (animation-timeline: view()) {
 
+  /* progress bar grows with the page scroll */
   .progress {
     animation: grow linear both;
     animation-timeline: scroll(root);
   }
 
+  /* white line draws as the label enters the screen */
   .label::before {
     animation: draw linear both;
     animation-timeline: view();
     animation-range: entry 0% entry 80%;
   }
 
+  /* cards, rows and columns fade up as they enter */
   .reveal {
     animation: rise ease-out both;
     animation-timeline: view();
@@ -599,6 +691,7 @@ h1 span {
   .cols .reveal:nth-child(2) { animation-range: entry 6% entry 66%; }
   .cols .reveal:nth-child(3) { animation-range: entry 12% entry 72%; }
 
+  /* the big statement fills with white as you scroll past it */
   .statement {
     color: transparent;
     background: linear-gradient(90deg, var(--text) 50%, #3a3a38 50%) 100% 0 / 200% 100%;
@@ -609,6 +702,11 @@ h1 span {
     animation-range: entry 35% cover 50%;
   }
 }
+
+
+/* ==========================================================================
+   16. RESPONSIVE
+   ========================================================================== */
 @media (max-width: 800px) {
   .section { padding: 4.5rem 0; }
 
@@ -637,6 +735,10 @@ h1 span {
   .peek  { display: none; }
 }
 
+
+/* ==========================================================================
+   17. REDUCED MOTION (for visitors who turn animations off)
+   ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
